@@ -1,0 +1,395 @@
+
+####################################
+# LIQUID PROMPT CONFIGURATION FILE #
+####################################
+
+# If you want to use different themes and features,
+# you can load the corresponding files here:
+{% if liquidprompt_source is defined %}
+source {{ liquidprompt_source }}
+{% else %}
+#source ~/.config/liquidprompt/nojhan.theme
+{% endif %}
+{% if liquidprompt_ps1_file is defined %}
+LP_PS1_FILE={{ liquidprompt_ps1_file }}
+{% else %}
+#LP_PS1_FILE=~/.config/liquidprompt/nojhan.ps1
+{% endif %}
+
+#############
+# BEHAVIOUR #
+#############
+
+# Maximal value under which the battery level is displayed
+# Recommended value is 75
+{% if liquidprompt_battery_threshold is defined %}
+LP_BATTERY_THRESHOLD={{ liquidprompt_battery_threshold }}
+{% else %}
+LP_BATTERY_THRESHOLD=75
+{% endif %}
+
+# Minimal value after which the load average is displayed
+# Recommended value is 60
+{% if liquidprompt_load_threshold is defined %}
+LP_LOAD_THRESHOLD={{ liquidprompt_load_threshold }}
+{% else %}
+LP_LOAD_THRESHOLD=60
+{% endif %}
+
+# Minimal value after which the temperature is displayed (in degrees Celsius)
+# Recommended value is 60
+{% if liquidprompt_temp_threshold is defined %}
+LP_TEMP_THRESHOLD={{ liquidprompt_temp_threshold }}
+{% else %}
+LP_TEMP_THRESHOLD=60
+{% endif %}
+
+# The maximum percentage of the screen width used to display the path
+# Recommended value is 35
+{% if liquidprompt_path_length is defined %}
+LP_PATH_LENGTH={{ liquidprompt_path_length }}
+{% else %}
+LP_PATH_LENGTH=35
+{% endif %}
+
+# How many directories to keep at the beginning of a shortened path
+# Recommended value is 2
+{% if liquidprompt_path_keep is defined %}
+LP_PATH_KEEP={{ liquidprompt_path_keep }}
+{% else %}
+LP_PATH_KEEP=2
+{% endif %}
+
+# Do you want to display the hostname, even if not connected through network?
+# Defaults to 0 (do not display hostname when locally connected)
+# set to 1 if you want to always see the hostname
+# set to -1 if you want to never see the hostname
+{% if liquidprompt_hostname_always is defined %}
+LP_HOSTNAME_ALWAYS={{ liquidprompt_hostname_always }}
+{% else %}
+LP_HOSTNAME_ALWAYS=0
+{% endif %}
+
+# Use the FQDN instead of the short hostname if the hostname is displayed
+{% if liquidprompt_enable_fqdn is defined %}
+{%   if liquidprompt_enable_fqdn %}
+LP_ENABLE_FQDN=1
+{%   else %}
+LP_ENABLE_FQDN=0
+{%   endif %}
+{% else %}
+LP_ENABLE_FQDN=0
+{% endif %}
+
+# Do you want to display the user, even if the user is the same as the one logged in?
+# Defaults to 1 (always display the user)
+# set to 0 if you want to hide the logged user (it will always display different users)
+{% if liquidprompt_user_always is defined %}
+{%   if liquidprompt_user_always %}
+LP_USER_ALWAYS=1
+{%   else %}
+LP_USER_ALWAYS=0
+{%   endif %}
+{% else %}
+LP_USER_ALWAYS=1
+{% endif %}
+
+# Do you want to display the percentages of load/batteries along with their
+# corresponding marks? Set to 0 to only print the colored marks.
+# Defaults to 1 (display percentages)
+{% if liquidprompt_percents_always is defined %}
+{%   if liquidprompt_percents_always %}
+LP_PERCENTS_ALWAYS=1
+{%   else %}
+LP_PERCENTS_ALWAYS=0
+{%   endif %}
+{% else %}
+LP_PERCENTS_ALWAYS=1
+{% endif %}
+
+# Do you want to use the permissions feature?
+# Recommended value is 1
+{% if liquidprompt_enable_perm is defined %}
+{%   if liquidprompt_enable_perm %}
+LP_ENABLE_PERM=1
+{%   else %}
+LP_ENABLE_PERM=0
+{%   endif %}
+{% else %}
+LP_ENABLE_PERM=1
+{% endif %}
+
+# Do you want to use the shorten path feature?
+# Recommended value is 1
+{% if liquidprompt_enable_shorten_path is defined %}
+{%   if liquidprompt_enable_shorten_path %}
+LP_ENABLE_SHORTEN_PATH=1
+{%   else %}
+LP_ENABLE_SHORTEN_PATH=0
+{%   endif %}
+{% else %}
+LP_ENABLE_SHORTEN_PATH=1
+{% endif %}
+
+# Do you want to use the proxy detection feature?
+# Recommended value is 1
+{% if liquidprompt_enable_proxy is defined %}
+{%   if liquidprompt_enable_proxy %}
+LP_ENABLE_PROXY=1
+{%   else %}
+LP_ENABLE_PROXY=0
+{%   endif %}
+{% else %}
+LP_ENABLE_PROXY=1
+{% endif %}
+
+# Do you want to use the jobs feature?
+# Recommended value is 1
+{% if liquidprompt_enable_jobs is defined %}
+{%   if liquidprompt_enable_jobs %}
+LP_ENABLE_JOBS=1
+{%   else %}
+LP_ENABLE_JOBS=0
+{%   endif %}
+{% else %}
+LP_ENABLE_JOBS=1
+{% endif %}
+
+# Do you want to use the load feature?
+# Recommended value is 1
+{% if liquidprompt_enable_load is defined %}
+{%   if liquidprompt_enable_load %}
+LP_ENABLE_LOAD=1
+{%   else %}
+LP_ENABLE_LOAD=0
+{%   endif %}
+{% else %}
+LP_ENABLE_LOAD=1
+{% endif %}
+
+# Do you want to use the battery feature?
+# Recommended value is 1
+{% if liquidprompt_enable_batt is defined %}
+{%   if liquidprompt_enable_batt %}
+LP_ENABLE_BATT=1
+{%   else %}
+LP_ENABLE_BATT=0
+{%   endif %}
+{% else %}
+LP_ENABLE_BATT=1
+{% endif %}
+
+# Do you want to use the 'sudo credentials' feature?
+# Be warned that this may pollute the syslog if you don't have sudo
+# credentials, and the sysadmin will hate you.
+{% if liquidprompt_enable_sudo is defined %}
+{%   if liquidprompt_enable_sudo %}
+LP_ENABLE_SUDO=1
+{%   else %}
+LP_ENABLE_SUDO=0
+{%   endif %}
+{% else %}
+LP_ENABLE_SUDO=0
+{% endif %}
+
+# Do you want to use VCS features with the root account?
+# Recommended value is 0
+{% if liquidprompt_enable_vcs_root is defined %}
+{%   if liquidprompt_enable_vcs_root %}
+LP_ENABLE_VCS_ROOT=1
+{%   else %}
+LP_ENABLE_VCS_ROOT=0
+{%   endif %}
+{% else %}
+LP_ENABLE_VCS_ROOT=0
+{% endif %}
+
+# Do you want to use the Git special features?
+# Recommended value is 1
+{% if liquidprompt_enable_git is defined %}
+{%   if liquidprompt_enable_git %}
+LP_ENABLE_GIT=1
+{%   else %}
+LP_ENABLE_GIT=0
+{%   endif %}
+{% else %}
+LP_ENABLE_GIT=1
+{% endif %}
+
+# Do you want to use the Subversion special features?
+# Recommended value is 1
+{% if liquidprompt_enable_svn is defined %}
+{%   if liquidprompt_enable_svn %}
+LP_ENABLE_SVN=1
+{%   else %}
+LP_ENABLE_SVN=0
+{%   endif %}
+{% else %}
+LP_ENABLE_SVN=1
+{% endif %}
+
+# Do you want to use the Mercurial special features?
+# Recommended value is 1
+{% if liquidprompt_enable_hg is defined %}
+{%   if liquidprompt_enable_hg %}
+LP_ENABLE_HG=1
+{%   else %}
+LP_ENABLE_HG=0
+{%   endif %}
+{% else %}
+LP_ENABLE_HG=1
+{% endif %}
+
+# Do you want to use the Fossil special features?
+# Recommended value is 1
+{% if liquidprompt_enable_fossil is defined %}
+{%   if liquidprompt_enable_fossil %}
+LP_ENABLE_FOSSIL=1
+{%   else %}
+LP_ENABLE_FOSSIL=0
+{%   endif %}
+{% else %}
+LP_ENABLE_FOSSIL=1
+{% endif %}
+
+# Do you want to use the Bazaar special features?
+# Recommanded value is 1
+{% if liquidprompt_enable_bzr is defined %}
+{%   if liquidprompt_enable_bzr %}
+LP_ENABLE_BZR=1
+{%   else %}
+LP_ENABLE_BZR=0
+{%   endif %}
+{% else %}
+LP_ENABLE_BZR=1
+{% endif %}
+
+# Show time of the last prompt display
+# Recommended value is 0
+{% if liquidprompt_enable_time is defined %}
+{%   if liquidprompt_enable_time %}
+LP_ENABLE_TIME=1
+{%   else %}
+LP_ENABLE_TIME=0
+{%   endif %}
+{% else %}
+LP_ENABLE_TIME=0
+{% endif %}
+
+# Show runtime of the last command if over LP_RUNTIME_THRESHOLD
+# Recommended value is 0
+{% if liquidprompt_enable_runtime is defined %}
+{%   if liquidprompt_enable_runtime %}
+LP_ENABLE_RUNTIME=1
+{%   else %}
+LP_ENABLE_RUNTIME=0
+{%   endif %}
+{% else %}
+LP_ENABLE_RUNTIME=0
+{% endif %}
+
+# Minimal runtime to be displayed
+# Recommended value is 2
+{% if liquidprompt_runtime_threshold is defined %}
+LP_RUNTIME_THRESHOLD={{ liquidprompt_runtime_threshold }}
+{% else %}
+LP_RUNTIME_THRESHOLD=2
+{% endif %}
+
+# Display the virtualenv that is currently activated, if any
+# Recommended value is 1
+{% if liquidprompt_enable_virtualenv is defined %}
+{%   if liquidprompt_enable_virtualenv %}
+LP_ENABLE_VIRTUALENV=1
+{%   else %}
+LP_ENABLE_VIRTUALENV=0
+{%   endif %}
+{% else %}
+LP_ENABLE_VIRTUALENV=1
+{% endif %}
+
+# Display the enabled software collections, if any
+# Recommended value is 1
+{% if liquidprompt_enable_scls is defined %}
+{%   if liquidprompt_enable_scls %}
+LP_ENABLE_SCLS=1
+{%   else %}
+LP_ENABLE_SCLS=0
+{%   endif %}
+{% else %}
+LP_ENABLE_SCLS=1
+{% endif %}
+
+# Show average system temperature
+{% if liquidprompt_enable_temp is defined %}
+{%   if liquidprompt_enable_temp %}
+LP_ENABLE_TEMP=1
+{%   else %}
+LP_ENABLE_TEMP=0
+{%   endif %}
+{% else %}
+LP_ENABLE_TEMP=1
+{% endif %}
+
+# When showing time, use an analog clock instead of numeric values.
+# The analog clock is "accurate" to the nearest half hour.
+# You must have a unicode-capable terminal and a font with the "CLOCK"
+# characters.
+# Recommended value is 0
+{% if liquidprompt_time_analog is defined %}
+{%   if liquidprompt_time_analog %}
+LP_TIME_ANALOG=1
+{%   else %}
+LP_TIME_ANALOG=0
+{%   endif %}
+{% else %}
+LP_TIME_ANALOG=0
+{% endif %}
+
+# Use the prompt as the title of the terminal window
+# The content is not customizable, the implementation is very basic,
+# and this may not work properly on exotic terminals, thus the
+# recommended value is 0
+# See LP_TITLE_OPEN and LP_TITLE_CLOSE to change escape characters to adapt this
+# feature to your specific terminal.
+{% if liquidprompt_enable_title is defined %}
+{%   if liquidprompt_enable_title %}
+LP_ENABLE_TITLE=1
+{%   else %}
+LP_ENABLE_TITLE=0
+{%   endif %}
+{% else %}
+LP_ENABLE_TITLE=0
+{% endif %}
+
+# Enable Title for screen and byobu
+{% if liquidprompt_enable_screen_title is defined %}
+{%   if liquidprompt_enable_screen_title %}
+LP_ENABLE_SCREEN_TITLE=1
+{%   else %}
+LP_ENABLE_SCREEN_TITLE=0
+{%   endif %}
+{% else %}
+LP_ENABLE_SCREEN_TITLE=0
+{% endif %}
+
+# Use differents colors for differents hosts you SSH in
+{% if liquidprompt_enable_ssh_colors is defined %}
+{%   if liquidprompt_enable_ssh_colors %}
+LP_ENABLE_SSH_COLORS=1
+{%   else %}
+LP_ENABLE_SSH_COLORS=0
+{%   endif %}
+{% else %}
+LP_ENABLE_SSH_COLORS=0
+{% endif %}
+
+# Specify a list of complete and colon (":") separated paths in which, all vcs
+# will be disabled
+{% if liquidprompt_disabled_vcs_path is defined %}
+LP_DISABLED_VCS_PATH="{{ liquidprompt_disabled_vcs_path|join(':') }}"
+{% else %}
+LP_DISABLED_VCS_PATH=""
+{% endif %}
+
+# vim: set et sts=4 sw=4 tw=120 ft=sh:

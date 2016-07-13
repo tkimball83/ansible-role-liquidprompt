@@ -1,0 +1,15 @@
+---
+dependencies: []
+galaxy_info:
+  author: tkimball83
+  description: macOS - An adaptive prompt for bash and zsh
+  license: BSD
+  min_ansible_version: 2.0
+  platforms:
+    - name: Darwin
+      versions: 
+        - all
+  galaxy_tags:
+    - liquidprompt
+    - macos
+    - osx
