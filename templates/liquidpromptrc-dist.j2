@@ -20,7 +20,7 @@ LP_PS1_FILE={{ liquidprompt_ps1_file }}
 # BEHAVIOUR #
 #############
 
-# Maximal value under which the battery level is displayed
+# Display the battery level when the level is below this threshold.
 # Recommended value is 75
 {% if liquidprompt_battery_threshold is defined %}
 LP_BATTERY_THRESHOLD={{ liquidprompt_battery_threshold }}
@@ -28,7 +28,7 @@ LP_BATTERY_THRESHOLD={{ liquidprompt_battery_threshold }}
 LP_BATTERY_THRESHOLD=75
 {% endif %}
 
-# Minimal value after which the load average is displayed
+# Display the load average when the load is above this threshold.
 # Recommended value is 60
 {% if liquidprompt_load_threshold is defined %}
 LP_LOAD_THRESHOLD={{ liquidprompt_load_threshold }}
@@ -36,7 +36,8 @@ LP_LOAD_THRESHOLD={{ liquidprompt_load_threshold }}
 LP_LOAD_THRESHOLD=60
 {% endif %}
 
-# Minimal value after which the temperature is displayed (in degrees Celsius)
+# Display the temperature when the temperate is above this threshold (in
+# degrees Celsius).
 # Recommended value is 60
 {% if liquidprompt_temp_threshold is defined %}
 LP_TEMP_THRESHOLD={{ liquidprompt_temp_threshold }}
@@ -44,7 +45,20 @@ LP_TEMP_THRESHOLD={{ liquidprompt_temp_threshold }}
 LP_TEMP_THRESHOLD=60
 {% endif %}
 
-# The maximum percentage of the screen width used to display the path
+# Use the shorten path feature if the path is too long to fit in the prompt
+# line.
+{% if liquidprompt_enable_shorten_path is defined %}
+{%   if liquidprompt_enable_shorten_path %}
+LP_ENABLE_SHORTEN_PATH=1
+{%   else %}
+LP_ENABLE_SHORTEN_PATH=0
+{%   endif %}
+{% else %}
+LP_ENABLE_SHORTEN_PATH=1
+{% endif %}
+
+# The maximum percentage of the screen width used to display the path before
+# removing the center portion of the path and replacing with '...'.
 # Recommended value is 35
 {% if liquidprompt_path_length is defined %}
 LP_PATH_LENGTH={{ liquidprompt_path_length }}
@@ -52,7 +66,8 @@ LP_PATH_LENGTH={{ liquidprompt_path_length }}
 LP_PATH_LENGTH=35
 {% endif %}
 
-# How many directories to keep at the beginning of a shortened path
+# The number of directories (including '/') to keep at the beginning of a
+# shortened path.
 # Recommended value is 2
 {% if liquidprompt_path_keep is defined %}
 LP_PATH_KEEP={{ liquidprompt_path_keep }}
@@ -60,7 +75,8 @@ LP_PATH_KEEP={{ liquidprompt_path_keep }}
 LP_PATH_KEEP=2
 {% endif %}
 
-# Do you want to display the hostname, even if not connected through network?
+# Determine if the hostname should always be displayed, even if not connecting
+# through network.
 # Defaults to 0 (do not display hostname when locally connected)
 # set to 1 if you want to always see the hostname
 # set to -1 if you want to never see the hostname
@@ -70,7 +86,8 @@ LP_HOSTNAME_ALWAYS={{ liquidprompt_hostname_always }}
 LP_HOSTNAME_ALWAYS=0
 {% endif %}
 
-# Use the FQDN instead of the short hostname if the hostname is displayed
+# Use the fully qualified domain name (FQDN) instead of the short hostname when
+# the hostname is displayed
 {% if liquidprompt_enable_fqdn is defined %}
 {%   if liquidprompt_enable_fqdn %}
 LP_ENABLE_FQDN=1
@@ -81,9 +98,11 @@ LP_ENABLE_FQDN=0
 LP_ENABLE_FQDN=0
 {% endif %}
 
-# Do you want to display the user, even if the user is the same as the one logged in?
-# Defaults to 1 (always display the user)
-# set to 0 if you want to hide the logged user (it will always display different users)
+# Always display the user name, even if the user is the same as the one logged
+# in.
+# Defaults to 1 (always display the user name)
+# set to 0 if you want to hide the logged user (it will always display different
+# users)
 {% if liquidprompt_user_always is defined %}
 {%   if liquidprompt_user_always %}
 LP_USER_ALWAYS=1
@@ -94,8 +113,8 @@ LP_USER_ALWAYS=0
 LP_USER_ALWAYS=1
 {% endif %}
 
-# Do you want to display the percentages of load/batteries along with their
-# corresponding marks? Set to 0 to only print the colored marks.
+# Display the percentages of load/batteries along with their
+# corresponding marks. Set to 0 to only print the colored marks.
 # Defaults to 1 (display percentages)
 {% if liquidprompt_percents_always is defined %}
 {%   if liquidprompt_percents_always %}
@@ -107,7 +126,8 @@ LP_PERCENTS_ALWAYS=0
 LP_PERCENTS_ALWAYS=1
 {% endif %}
 
-# Do you want to use the permissions feature?
+# Use the permissions feature and display a red ':' before the prompt to show
+# when you don't have write permission to the current directory.
 # Recommended value is 1
 {% if liquidprompt_enable_perm is defined %}
 {%   if liquidprompt_enable_perm %}
@@ -119,19 +139,7 @@ LP_ENABLE_PERM=0
 LP_ENABLE_PERM=1
 {% endif %}
 
-# Do you want to use the shorten path feature?
-# Recommended value is 1
-{% if liquidprompt_enable_shorten_path is defined %}
-{%   if liquidprompt_enable_shorten_path %}
-LP_ENABLE_SHORTEN_PATH=1
-{%   else %}
-LP_ENABLE_SHORTEN_PATH=0
-{%   endif %}
-{% else %}
-LP_ENABLE_SHORTEN_PATH=1
-{% endif %}
-
-# Do you want to use the proxy detection feature?
+# Enable the proxy detection feature.
 # Recommended value is 1
 {% if liquidprompt_enable_proxy is defined %}
 {%   if liquidprompt_enable_proxy %}
@@ -143,7 +151,7 @@ LP_ENABLE_PROXY=0
 LP_ENABLE_PROXY=1
 {% endif %}
 
-# Do you want to use the jobs feature?
+# Enable the jobs feature.
 # Recommended value is 1
 {% if liquidprompt_enable_jobs is defined %}
 {%   if liquidprompt_enable_jobs %}
@@ -155,7 +163,7 @@ LP_ENABLE_JOBS=0
 LP_ENABLE_JOBS=1
 {% endif %}
 
-# Do you want to use the load feature?
+# Enable the load feature.
 # Recommended value is 1
 {% if liquidprompt_enable_load is defined %}
 {%   if liquidprompt_enable_load %}
@@ -167,7 +175,7 @@ LP_ENABLE_LOAD=0
 LP_ENABLE_LOAD=1
 {% endif %}
 
-# Do you want to use the battery feature?
+# Enable the battery feature.
 # Recommended value is 1
 {% if liquidprompt_enable_batt is defined %}
 {%   if liquidprompt_enable_batt %}
@@ -179,7 +187,7 @@ LP_ENABLE_BATT=0
 LP_ENABLE_BATT=1
 {% endif %}
 
-# Do you want to use the 'sudo credentials' feature?
+# Enable the 'sudo credentials' feature.
 # Be warned that this may pollute the syslog if you don't have sudo
 # credentials, and the sysadmin will hate you.
 {% if liquidprompt_enable_sudo is defined %}
@@ -192,7 +200,7 @@ LP_ENABLE_SUDO=0
 LP_ENABLE_SUDO=0
 {% endif %}
 
-# Do you want to use VCS features with the root account?
+# Enable the VCS features with the root account.
 # Recommended value is 0
 {% if liquidprompt_enable_vcs_root is defined %}
 {%   if liquidprompt_enable_vcs_root %}
@@ -204,7 +212,7 @@ LP_ENABLE_VCS_ROOT=0
 LP_ENABLE_VCS_ROOT=0
 {% endif %}
 
-# Do you want to use the Git special features?
+# Enable the Git special features.
 # Recommended value is 1
 {% if liquidprompt_enable_git is defined %}
 {%   if liquidprompt_enable_git %}
@@ -216,7 +224,7 @@ LP_ENABLE_GIT=0
 LP_ENABLE_GIT=1
 {% endif %}
 
-# Do you want to use the Subversion special features?
+# Enable the Subversion special features.
 # Recommended value is 1
 {% if liquidprompt_enable_svn is defined %}
 {%   if liquidprompt_enable_svn %}
@@ -228,7 +236,7 @@ LP_ENABLE_SVN=0
 LP_ENABLE_SVN=1
 {% endif %}
 
-# Do you want to use the Mercurial special features?
+# Enable the Mercurial special features.
 # Recommended value is 1
 {% if liquidprompt_enable_hg is defined %}
 {%   if liquidprompt_enable_hg %}
@@ -240,7 +248,7 @@ LP_ENABLE_HG=0
 LP_ENABLE_HG=1
 {% endif %}
 
-# Do you want to use the Fossil special features?
+# Enable the Fossil special features.
 # Recommended value is 1
 {% if liquidprompt_enable_fossil is defined %}
 {%   if liquidprompt_enable_fossil %}
@@ -252,7 +260,7 @@ LP_ENABLE_FOSSIL=0
 LP_ENABLE_FOSSIL=1
 {% endif %}
 
-# Do you want to use the Bazaar special features?
+# Enable the Bazaar special features.
 # Recommanded value is 1
 {% if liquidprompt_enable_bzr is defined %}
 {%   if liquidprompt_enable_bzr %}
@@ -264,8 +272,9 @@ LP_ENABLE_BZR=0
 LP_ENABLE_BZR=1
 {% endif %}
 
-# Show time of the last prompt display
-# Recommended value is 0
+# Show time of when the current prompt was displayed. (Must be enabled and
+# disabled in the config file and not after liquidprompt has already been
+# sourced.)
 {% if liquidprompt_enable_time is defined %}
 {%   if liquidprompt_enable_time %}
 LP_ENABLE_TIME=1
@@ -276,7 +285,7 @@ LP_ENABLE_TIME=0
 LP_ENABLE_TIME=0
 {% endif %}
 
-# Show runtime of the last command if over LP_RUNTIME_THRESHOLD
+# Show runtime of the previous command if over LP_RUNTIME_THRESHOLD
 # Recommended value is 0
 {% if liquidprompt_enable_runtime is defined %}
 {%   if liquidprompt_enable_runtime %}
@@ -288,7 +297,7 @@ LP_ENABLE_RUNTIME=0
 LP_ENABLE_RUNTIME=0
 {% endif %}
 
-# Minimal runtime to be displayed
+# Minimal runtime (in seconds) before the runtime will be displayed
 # Recommended value is 2
 {% if liquidprompt_runtime_threshold is defined %}
 LP_RUNTIME_THRESHOLD={{ liquidprompt_runtime_threshold }}
@@ -331,7 +340,7 @@ LP_ENABLE_TEMP=0
 LP_ENABLE_TEMP=1
 {% endif %}
 
-# When showing time, use an analog clock instead of numeric values.
+# When showing the time, use an analog clock instead of numeric values.
 # The analog clock is "accurate" to the nearest half hour.
 # You must have a unicode-capable terminal and a font with the "CLOCK"
 # characters.
@@ -373,7 +382,7 @@ LP_ENABLE_SCREEN_TITLE=0
 LP_ENABLE_SCREEN_TITLE=0
 {% endif %}
 
-# Use differents colors for differents hosts you SSH in
+# Use different colors for the different hosts you SSH to
 {% if liquidprompt_enable_ssh_colors is defined %}
 {%   if liquidprompt_enable_ssh_colors %}
 LP_ENABLE_SSH_COLORS=1
