@@ -5,21 +5,11 @@
             state=present
   register: liquidprompt_homebrew
 
-- block:
-    - name: Add sourcing block to local profile
-      blockinfile:
-        block: |
-          if [ -f {{ liquidprompt_path }} ]; then
-            [[ $- = *i* ]] && source {{ liquidprompt_path }}
-          fi
-        dest: "{{ liquidprompt_dest|default(ansible_user_dir) }}/.bash_profile"
-        owner: "{{ liquidprompt_owner|default(ansible_user_uid) }}"
-        group: "{{ liquidprompt_group|default(ansible_user_gid) }}"
-    - name: Configure liquidpromptrc
-      template: src=liquidpromptrc-dist.j2
-                dest={{ liquidprompt_dest|default(ansible_user_dir) }}/.liquidpromptrc
-                owner={{ liquidprompt_owner|default(ansible_user_uid) }}
-                group={{ liquidprompt_group|default(ansible_user_gid) }}
-                mode=0644
+- name: Configure liquidpromptrc
   tags: liquidprompt
+  template: src=liquidpromptrc-dist.j2
+            dest={{ liquidprompt_dest|default(ansible_user_dir) }}/.liquidpromptrc
+            owner={{ liquidprompt_owner|default(ansible_user_uid) }}
+            group={{ liquidprompt_group|default(ansible_user_gid) }}
+            mode=0644
   when: liquidprompt_homebrew|success
