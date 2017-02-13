@@ -57,7 +57,7 @@ The following are additional variables, not defined by default:
 
 ## Dependencies
 
-None
+  * https://galaxy.ansible.com/geerlingguy/homebrew
 
 ## Example Playbook
 
