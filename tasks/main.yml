@@ -1,15 +1,18 @@
 ---
-- name: Install liquidprompt package
+- name: Ensure that the liquidprompt package is installed
   tags: liquidprompt
-  homebrew: name=liquidprompt
-            state=present
+  homebrew:
+    name: liquidprompt
+    state: present
   register: liquidprompt_homebrew
 
-- name: Configure liquidpromptrc
+- name: Applying liquidprompt configurations
   tags: liquidprompt
-  template: src=liquidpromptrc-dist.j2
-            dest={{ liquidprompt_dest|default(ansible_user_dir) }}/.liquidpromptrc
-            owner={{ liquidprompt_owner|default(ansible_user_uid) }}
-            group={{ liquidprompt_group|default(ansible_user_gid) }}
-            mode=0644
+  template:
+    src: liquidpromptrc-dist.j2
+    dest: "{{ liquidprompt_dest|default(ansible_user_dir) }}/.liquidpromptrc"
+    owner: "{{ liquidprompt_owner|default(ansible_user_uid) }}"
+    group: "{{ liquidprompt_group|default(ansible_user_gid) }}"
+    mode: 0644
   when: liquidprompt_homebrew|success
+...

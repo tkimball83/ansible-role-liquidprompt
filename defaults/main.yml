@@ -32,3 +32,4 @@ liquidprompt_runtime_threshold: 2
 liquidprompt_temp_threshold: 60
 liquidprompt_time_analog: False
 liquidprompt_user_always: True
+...
