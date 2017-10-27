@@ -1,6 +1,7 @@
 ---
 - name: Ensure that the liquidprompt package is installed
   tags: liquidprompt
+  become: true
   homebrew:
     name: liquidprompt
     state: present
