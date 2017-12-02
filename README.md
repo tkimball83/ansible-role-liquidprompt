@@ -6,7 +6,7 @@ macOS - A useful adaptive prompt for bash & zsh
 
 ## Requirements
 
-This role requires Homebrew to be installed
+This role requires homebrew to be installed
 
 ## Role Variables
 
@@ -57,7 +57,7 @@ The following are additional variables, not defined by default:
 
 ## Dependencies
 
-  * https://galaxy.ansible.com/geerlingguy/homebrew
+None
 
 ## Example Playbook
 
@@ -70,7 +70,7 @@ The following are additional variables, not defined by default:
 
 ## License
 
-BSD
+GPLv3
 
 ## Author Information
 
