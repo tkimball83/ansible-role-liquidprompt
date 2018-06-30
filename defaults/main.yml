@@ -24,10 +24,10 @@ liquidprompt_enable_time: false
 liquidprompt_enable_title: true
 liquidprompt_enable_vcs_root: false
 liquidprompt_enable_virtualenv: true
-liquidprompt_group: "{{ ansible_effective_group_id }}"
+liquidprompt_group: "{{ ansible_real_group_id }}"
 liquidprompt_hostname_always: '0'
 liquidprompt_load_threshold: 60
-liquidprompt_owner: "{{ ansible_effective_user_id }}"
+liquidprompt_owner: "{{ ansible_real_user_id }}"
 liquidprompt_path: /usr/local/share/liquidprompt
 liquidprompt_path_keep: 2
 liquidprompt_path_length: 35
