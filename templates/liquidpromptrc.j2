@@ -8,7 +8,6 @@ source {{ source }}
 {% if liquidprompt_ps1_file|length > 0 %}
 LP_PS1_FILE={{ liquidprompt_ps1_file }}
 {% endif %}
-
 LP_BATTERY_THRESHOLD={{ liquidprompt_battery_threshold }}
 LP_DISABLED_VCS_PATH="{{ liquidprompt_disabled_vcs_path|join(':') }}"
 LP_ENABLE_BATT={{ '1' if liquidprompt_enable_batt|bool else '0' }}
