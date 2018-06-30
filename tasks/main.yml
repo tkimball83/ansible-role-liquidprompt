@@ -6,13 +6,13 @@
     state: present
   register: liquidprompt_homebrew
 
-- name: Applying liquidprompt configurations
+- name: Attempting to overlay liquidprompt configurations
   tags: liquidprompt
   template:
-    src: liquidpromptrc-dist.j2
-    dest: "{{ liquidprompt_dest|default(ansible_user_dir) }}/.liquidpromptrc"
-    owner: "{{ liquidprompt_owner|default(ansible_user_uid) }}"
-    group: "{{ liquidprompt_group|default(ansible_user_gid) }}"
+    src: liquidpromptrc.j2
+    dest: "{{ liquidprompt_dest }}/.liquidpromptrc"
+    owner: "{{ liquidprompt_owner }}"
+    group: "{{ liquidprompt_group }}"
     mode: 0644
-  when: liquidprompt_homebrew|success
+  when: liquidprompt_homebrew is success
 ...
