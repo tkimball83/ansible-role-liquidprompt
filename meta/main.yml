@@ -1,6 +1,7 @@
 ---
 dependencies: []
 galaxy_info:
+  role_name: liquidprompt
   author: tkimball83
   description: macOS - An adaptive prompt for bash and zsh
   license: GPLv3
