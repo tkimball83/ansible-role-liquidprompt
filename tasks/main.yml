@@ -4,15 +4,17 @@
   homebrew:
     name: liquidprompt
     state: present
-  register: liquidprompt_homebrew
 
 - name: Attempting to overlay liquidprompt configurations
   tags: liquidprompt
   template:
     src: liquidpromptrc.j2
-    dest: "{{ liquidprompt_dest }}/.liquidpromptrc"
+    dest: "{{ [liquidprompt_dest, '.liquidpromptrc'] | join('/') }}"
     owner: "{{ liquidprompt_owner }}"
     group: "{{ liquidprompt_group }}"
     mode: 0644
-  when: liquidprompt_homebrew is success
+  when:
+    - liquidprompt_dest is defined
+    - liquidprompt_owner is defined
+    - liquidprompt_group is defined
 ...
